@@ -1,0 +1,113 @@
+<!-- S-1 記録画面 / S-2 種目選択シート -->
+<section class="screen">
+  <div class="empty-state" data-ref="empty" hidden>
+    <p>まずは種目を選びましょう。</p>
+    <button type="button" class="primary large" data-ref="pick-empty">種目を選ぶ</button>
+  </div>
+
+  <div data-ref="main" hidden>
+    <button type="button" class="exercise-header" data-ref="pick">
+      <span class="exercise-name" data-ref="exercise-name"></span>
+      <span class="exercise-sub" data-ref="exercise-sub"></span>
+      <span class="chevron" aria-hidden="true">▾</span>
+    </button>
+    <p class="fixed-note" data-ref="fixed-note" hidden></p>
+
+    <form class="card set-form" data-ref="form" novalidate>
+      <div data-ref="strength-fields">
+        <div class="stepper-row">
+          <span class="stepper-label">重量</span>
+          <div class="stepper">
+            <button type="button" class="step" data-ref="weight-minus" aria-label="重量を減らす">−</button>
+            <input type="number" inputmode="decimal" step="0.1" data-ref="weight" aria-label="重量（kg）">
+            <span class="unit">kg</span>
+            <button type="button" class="step" data-ref="weight-plus" aria-label="重量を増やす">＋</button>
+          </div>
+        </div>
+
+        <div class="stepper-row">
+          <span class="stepper-label">回数</span>
+          <div class="stepper">
+            <button type="button" class="step" data-ref="reps-minus" aria-label="回数を減らす">−</button>
+            <input type="number" inputmode="numeric" step="1" data-ref="reps" aria-label="回数">
+            <span class="unit">回</span>
+            <button type="button" class="step" data-ref="reps-plus" aria-label="回数を増やす">＋</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 有酸素：項目は種目の種類によって変わるので、下のテンプレートから作る -->
+      <div data-ref="cardio-steppers"></div>
+      <div class="field-row" data-ref="cardio-extras"></div>
+      <p class="muted small" data-ref="cardio-note" hidden>途中で設定を変えたときは、主に使った値を（区間ごとに分けて記録してもOK）。</p>
+
+      <fieldset class="field">
+        <legend>辛さ</legend>
+        <div class="difficulty-picker" data-ref="difficulty"></div>
+        <p class="difficulty-hint" data-ref="difficulty-hint"></p>
+      </fieldset>
+
+      <input type="text" class="note-input" data-ref="note" placeholder="備考（任意）" aria-label="備考">
+
+      <p class="hint" data-ref="hint"></p>
+      <button type="submit" class="primary large" data-ref="submit">このセットを記録</button>
+    </form>
+
+    <section class="card" data-ref="today-section" hidden>
+      <h2>今日</h2>
+      <p class="muted small">行を押すと、修正・削除できます。</p>
+      <ol class="set-list" data-ref="today-sets"></ol>
+    </section>
+
+    <section class="card" data-ref="prev-section" hidden>
+      <h2>前回 <span class="muted" data-ref="prev-date"></span></h2>
+      <p class="muted small">行を押すと、その値を入力欄に入れます。</p>
+      <ol class="set-list" data-ref="prev-sets"></ol>
+    </section>
+  </div>
+
+  <dialog class="sheet" data-ref="exercise-sheet">
+    <div class="sheet-body">
+      <header class="sheet-header">
+        <h2>種目を選ぶ</h2>
+        <button type="button" class="icon-button" data-ref="sheet-close" aria-label="閉じる">×</button>
+      </header>
+      <div class="chips" data-ref="group-chips"></div>
+      <ul class="exercise-list" data-ref="exercise-list"></ul>
+      <p class="muted" data-ref="no-exercise" hidden>この部位の種目はまだありません。</p>
+      <a class="add-link" data-ref="add-exercise" href="#/exercise/new?from=record">＋ 新しい種目を登録</a>
+    </div>
+  </dialog>
+
+  <template data-tpl="exercise-item">
+    <li>
+      <button type="button" class="exercise-item">
+        <span class="exercise-item-name" data-field="name"></span>
+        <span class="exercise-item-sub" data-field="sub"></span>
+      </button>
+    </li>
+  </template>
+
+  <template data-tpl="cardio-stepper">
+    <div class="stepper-row">
+      <span class="stepper-label" data-field="label"></span>
+      <div class="stepper">
+        <button type="button" class="step" data-field="minus">−</button>
+        <input type="number" inputmode="decimal">
+        <span class="unit" data-field="unit"></span>
+        <button type="button" class="step" data-field="plus">＋</button>
+      </div>
+    </div>
+  </template>
+
+  <template data-tpl="cardio-extra">
+    <label class="field">
+      <span data-field="label"></span>
+      <input type="number" inputmode="decimal">
+    </label>
+  </template>
+
+  <template data-tpl="chip">
+    <button type="button" class="chip" aria-pressed="false"><span data-field="label"></span></button>
+  </template>
+</section>
