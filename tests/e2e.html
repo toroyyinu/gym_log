@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>画面の通し確認 — 頑張れジム通い</title>
+  <link rel="stylesheet" href="tests.css">
+  <script type="module" src="e2e.js"></script>
+</head>
+<body>
+  <!-- 注意：このページを開くと、このブラウザのアプリのデータに「テスト用の種目と記録」が追加される。
+       公開先で誤って開いても本番のデータに入らないよう、localhost でしか動かない（e2e.js） -->
+  <p data-ref="summary">実行中…</p>
+  <ol data-ref="results"></ol>
+  <iframe data-ref="app" width="390" height="844"></iframe>
+  <template data-tpl="result">
+    <li><span data-field="mark"></span> <span data-field="name"></span> <pre data-field="detail"></pre></li>
+  </template>
+</body>
+</html>

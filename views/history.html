@@ -1,0 +1,36 @@
+<!-- S-3 履歴画面（S-4 記録編集シートは index.html） -->
+<section class="screen">
+  <h1 class="screen-title">履歴</h1>
+
+  <div class="segmented" role="group" aria-label="表示の切り替え">
+    <button type="button" data-ref="mode-day" aria-pressed="true">日付ごと</button>
+    <button type="button" data-ref="mode-exercise" aria-pressed="false">種目ごと</button>
+  </div>
+
+  <label class="field">
+    <span>絞り込み</span>
+    <select data-ref="filter"></select>
+  </label>
+
+  <label class="field" data-ref="exercise-field" hidden>
+    <span>種目</span>
+    <select data-ref="exercise"></select>
+  </label>
+
+  <div data-ref="list"></div>
+  <p class="muted empty-message" data-ref="empty" hidden>表示できる記録がありません。</p>
+
+  <template data-tpl="day-block">
+    <section class="card">
+      <h2 data-field="date"></h2>
+      <div data-field="items"></div>
+    </section>
+  </template>
+
+  <template data-tpl="exercise-block">
+    <div class="exercise-block">
+      <h3 data-field="name"></h3>
+      <ol class="set-list" data-field="sets"></ol>
+    </div>
+  </template>
+</section>
